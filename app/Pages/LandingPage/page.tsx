@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import FloodHero from "@/public/PMS.jpg";
+// import FloodHero from "@/public/PMS.jpg";
 
 export default function Home() {
   return (
