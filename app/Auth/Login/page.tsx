@@ -66,7 +66,7 @@ export default function LoginPage() {
 
               <Button variant="outline" className="w-full" asChild>
                 <a
-                  href="https://example.com/mobile-app"
+                  href="https://github.com/IOT-Ninjas/Mobile-Application-Repo"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
