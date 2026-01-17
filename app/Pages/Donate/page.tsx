@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import DonateModal from "@/components/DonateModal/page";
 
 export default function DonatePage() {
   return (
@@ -19,49 +19,28 @@ export default function DonatePage() {
         </motion.h1>
         <p className="text-lg text-blue-700 max-w-2xl mx-auto mb-8">
           Every donation helps us deliver real-time flood response, emergency
-          aid, and transparent financial allocation through blockchain auditing.
+          aid, and transparent blockchain-based auditing.
         </p>
       </section>
 
-      {/* Donation Options */}
-      <section className="max-w-5xl mx-auto py-16 px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-        {[
-          { amount: 10, label: "Provide emergency supplies for one family" },
-          { amount: 50, label: "Fund IoT monitoring sensors in a community" },
-          { amount: 100, label: "Support full-scale flood relief operations" },
-        ].map((donation, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.2, duration: 0.5 }}
-          >
-            <Card className="p-6 text-center shadow-md border-blue-100 rounded-2xl hover:shadow-lg transition">
-              <h3 className="text-3xl font-bold text-blue-700 mb-2">
-                ${donation.amount}
-              </h3>
-              <p className="text-gray-600 mb-6">{donation.label}</p>
-              <Button className="bg-blue-600 hover:bg-blue-700 w-full">
-                Donate ${donation.amount}
-              </Button>
-            </Card>
-          </motion.div>
-        ))}
-      </section>
+      {/* ✅ Single Donation Option */}
+      <section className="max-w-xl mx-auto py-16 px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <Card className="p-6 text-center shadow-md border-blue-100 rounded-2xl hover:shadow-lg transition">
+            <h3 className="text-3xl font-bold text-blue-700 mb-2">$10</h3>
+            <p className="text-gray-600 mb-6">
+              Provide emergency supplies for one family.
+            </p>
 
-      {/* Blockchain Transparency Section */}
-      <section className="text-center py-20 bg-blue-50 px-6">
-        <h2 className="text-3xl font-semibold text-blue-900 mb-4">
-          Blockchain Transparency
-        </h2>
-        <p className="max-w-2xl mx-auto text-gray-700 mb-6">
-          All donations are recorded on our blockchain ledger, ensuring full
-          transparency and traceability of every transaction.
-        </p>
-        <Button variant="outline" size="lg">
-          View Blockchain Ledger
-        </Button>
+            {/* ✅ Your new modal */}
+            <DonateModal />
+          </Card>
+        </motion.div>
       </section>
     </main>
   );
