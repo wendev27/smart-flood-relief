@@ -1,44 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-
-type Role = "admin" | "barangay";
 
 export default function LoginPage() {
-  const router = useRouter();
-
-  const [role, setRole] = useState<Role>("admin");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // 🔐 Simple role-based hardcoded login (temporary)
-    if (role === "admin" && email === "root" && password === "admin") {
-      localStorage.setItem("role", "admin");
-      localStorage.setItem("isLoggedIn", "true");
-      router.push("/Dashboard");
-      return;
-    }
-
-    if (role === "barangay" && email === "root" && password === "user") {
-      localStorage.setItem("role", "barangay");
-      localStorage.setItem("isLoggedIn", "true");
-      router.push("/Dashboard");
-      return;
-    }
-
-    setError("Invalid credentials for selected role");
-  };
-
   return (
     <main className="flex items-center justify-center min-h-screen bg-gradient-to-b from-blue-100 via-white to-blue-50 px-6">
       <motion.div
@@ -52,104 +20,65 @@ export default function LoginPage() {
             SmartFlood Relief
           </h1>
           <p className="text-center text-gray-500 mb-6">
-            Log in to access your dashboard
+            Access the system through the official platforms
           </p>
 
-          {/* 🔹 ROLE SELECTOR */}
-          <div className="flex gap-2 mb-6">
-            {/* <button
-              type="button"
-              onClick={() => setRole("admin")}
-              className={`flex-1 py-2 rounded-md text-sm font-medium border transition
-                ${
-                  role === "admin"
-                    ? "bg-blue-600 text-white border-blue-600"
-                    : "bg-white text-blue-600 border-blue-200 hover:bg-blue-50"
-                }`}
-            >
-              Admin
-            </button> */}
+          {/* 🔹 ADMIN ACCESS */}
+          <div className="mb-8">
             <a
               href="https://capstone-web-app-blond.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 py-2 rounded-md text-sm font-medium border transition
-    bg-blue-600 text-white border-blue-600 text-center"
+              className="block w-full py-3 rounded-md text-center font-medium bg-blue-600 text-white hover:bg-blue-700 transition"
             >
-              Admin
+              Login as Admin
             </a>
-
-            <button
-              type="button"
-              onClick={() => setRole("barangay")}
-              className={`flex-1 py-2 rounded-md text-sm font-medium border transition
-                ${
-                  role === "barangay"
-                    ? "bg-blue-600 text-white border-blue-600"
-                    : "bg-white text-blue-600 border-blue-200 hover:bg-blue-50"
-                }`}
+            <a
+              href="https://capstone-web-app-blond.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full mt-4 py-3 rounded-md text-center font-medium bg-blue-600 text-white hover:bg-blue-700 transition"
             >
-              Barangay Official
-            </button>
+              Login as Barangay Official
+            </a>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-5">
-            <div>
-              <label className="block text-sm text-gray-700 mb-1">
-                Username
-              </label>
-              <Input
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={role === "admin" ? "root" : "barangay-user"}
-                required
-                className="border-blue-200 focus-visible:ring-blue-400"
-              />
+          {/* 🔹 QR LOGIN SECTION */}
+          <div className="border-t border-border pt-6">
+            <p className="text-sm text-gray-600 text-center mb-4">
+              Residents access SmartFlood via the mobile application.
+            </p>
+
+            <div className="flex flex-col items-center gap-4">
+              {/* Dummy QR Code */}
+              <div className="relative w-40 h-40">
+                <Image
+                  src="/qr.jpeg" // place a dummy QR in /public
+                  alt="Download SmartFlood Mobile App"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+
+              <p className="text-xs text-gray-500 text-center">
+                Scan to download the SmartFlood mobile application
+              </p>
+
+              <Button variant="outline" className="w-full" asChild>
+                <a
+                  href="https://example.com/mobile-app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Download Mobile App
+                </a>
+              </Button>
             </div>
+          </div>
 
-            <div>
-              <label className="block text-sm text-gray-700 mb-1">
-                Password
-              </label>
-              <Input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder={role === "admin" ? "admin" : "user"}
-                required
-                className="border-blue-200 focus-visible:ring-blue-400"
-              />
-            </div>
-
-            {error && (
-              <p className="text-red-500 text-sm text-center">{error}</p>
-            )}
-
-            {/* <Button
-              type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium"
-            >
-              Log In as {role === "admin" ? "Admin" : "Barangay Official"}
-            </Button> */}
-
-            <Button
-              type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium"
-            >
-              {/* Log In as {role === "admin" ? "Admin" : "Barangay Official"} */}
-              in development mode click Admin to proceed
-            </Button>
-          </form>
-
-          <p className="text-center text-sm text-gray-500 mt-6">
-            Don’t have an account?{" "}
-            <Link
-              href="/Auth/SignUp"
-              className="text-blue-600 hover:text-blue-700 font-medium"
-            >
-              Sign up
-            </Link>
+          {/* 🔹 FOOTNOTE */}
+          <p className="text-center text-xs text-gray-400 mt-6">
+            Web authentication is disabled in demo mode.
           </p>
         </Card>
       </motion.div>
