@@ -17,11 +17,10 @@ export default function LoginPage() {
       >
         <Card className="p-8 shadow-lg border-blue-100 rounded-2xl">
           <h1 className="text-3xl font-bold text-blue-700 text-center mb-2">
-            SmartFlood Relief
-          </h1>
-          <p className="text-center text-gray-500 mb-6">
+            {/* SmartFlood Relief  */}
             Access the system through the official platforms
-          </p>
+          </h1>
+          <p className="text-center text-gray-500 mb-6"></p>
 
           {/* 🔹 ADMIN ACCESS */}
           <div className="mb-8">
