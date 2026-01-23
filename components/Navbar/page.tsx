@@ -31,18 +31,19 @@ export default function Navbar() {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="hidden md:flex space-x-4"
         >
-          <Link href="/Pages/About">
-            <Button variant="outline">About</Button>
-          </Link>
-          <Link href="/Pages/Donate">
-            <Button variant="outline">Donate</Button>
+          <Link href="/Pages/DashBoard">
+            <Button variant="outline">Dashboard</Button>
           </Link>
           <Link href="/Pages/Monitoring">
             <Button variant="outline">Monitoring</Button>
           </Link>
-          <Link href="/Pages/DashBoard">
-            <Button variant="outline">Dashboard</Button>
+          <Link href="/Pages/Donate">
+            <Button variant="outline">Donate</Button>
           </Link>
+          <Link href="/Pages/About">
+            <Button variant="outline">About</Button>
+          </Link>
+
           <Link href="/Auth/Login">
             <Button>Get Started</Button>
           </Link>
