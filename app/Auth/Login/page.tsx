@@ -33,7 +33,7 @@ export default function LoginPage() {
               Login as Admin
             </a>
             <a
-              href="https://capstone-web-app-blond.vercel.app/"
+              href="https://capstone-web-app-barangay-repo.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full mt-4 py-3 rounded-md text-center font-medium bg-blue-600 text-white hover:bg-blue-700 transition"
